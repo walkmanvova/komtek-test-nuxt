@@ -31,6 +31,13 @@ export default {
     addUser(state, newUser) {
       newUser.id = Math.max(...state.users.map(i => i.id)) + 1;
       state.users.push(newUser)
+    },
+    editUser(state, editableUser) {
+      state.users.forEach(function(user, i, arr) {
+        if(user.id === editableUser.id) {
+          state.users[i] = editableUser
+        }
+      })
     }
   },
   getters: {

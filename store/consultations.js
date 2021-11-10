@@ -31,6 +31,13 @@ export default {
     addConsultation(state, newConsultation) {
       newConsultation.id = Math.max(...state.consultations.map(i => i.id)) + 1;
       state.consultations.push(newConsultation)
+    },
+    editConsultation(state, editableConsultation) {
+      state.consultations.forEach(function(consultation, i, arr) {
+        if(consultation.id === editableConsultation.id) {
+          state.consultations[i] = editableConsultation
+        }
+      })
     }
   },
   getters: {

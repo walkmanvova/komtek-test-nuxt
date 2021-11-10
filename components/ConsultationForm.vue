@@ -42,11 +42,12 @@ export default {
     }
   },
   methods: {
-    ...mapMutations({addConsultation: 'consultations/addConsultation'}),
+    ...mapMutations({addConsultation: 'consultations/addConsultation', editConsultation: 'consultations/editConsultation'}),
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           if (this.editForm) {
+            this.editConsultation(this.consultationForm)
             this.$router.push({name: 'User', params: { id: this.consultationForm.userId }})
           } else {
             this.consultationForm.userId = +this.$route.params.id;
@@ -64,7 +65,7 @@ export default {
   },
   created() {
     if (this.editForm) {
-      this.consultationForm = this.getCurrentConsultation(+this.$route.params.id);
+      this.consultationForm = {...this.getCurrentConsultation(+this.$route.params.id)} //Клонируем обьект
     }
   }
 }
