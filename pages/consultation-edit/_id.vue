@@ -1,18 +1,18 @@
 <template>
-  <UserForm />
+  <ConsultationForm />
 </template>
 
 <script>
-import UserForm from '@/components/UserForm'
+import ConsultationForm from '@/components/ConsultationForm'
 export default {
   components: {
-    UserForm
+    ConsultationForm
   },
   async fetch({store}) {
-    if (store.getters['users/allUsers'].length === 0) {
+    if (store.getters['consultations/allConsultations'].length === 0) {
       await store.dispatch('users/requestUsers')
       await store.dispatch('consultations/requestConsultations')
     }
-  }
+  },
 }
 </script>

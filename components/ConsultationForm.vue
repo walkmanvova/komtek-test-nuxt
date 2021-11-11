@@ -37,7 +37,7 @@ export default {
           { type: 'string', required: true, message: 'Это поле обязательно для заполнения', trigger: 'change' }
         ]
       },
-      editForm: this.$route.name === 'ConsultationEdit',
+      editForm: this.$route.name === 'consultation-edit-id',
       userId: ''
     }
   },
@@ -48,11 +48,11 @@ export default {
         if (valid) {
           if (this.editForm) {
             this.editConsultation(this.consultationForm)
-            this.$router.push({name: 'User', params: { id: this.consultationForm.userId }})
+            this.$router.push({name: 'user-id', params: { id: this.consultationForm.userId }})
           } else {
             this.consultationForm.userId = +this.$route.params.id;
             this.addConsultation(this.consultationForm);
-            this.$router.push({name: 'User', params: { id: +this.$route.params.id }});
+            this.$router.push({name: 'user-id', params: { id: +this.$route.params.id }});
           }
         } else {
           return false;

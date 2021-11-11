@@ -7,15 +7,18 @@
       <el-descriptions-item label="СНИЛС">{{currentUser.snils}}</el-descriptions-item>
     </el-descriptions>
     <el-row :gutter="20">
-      <el-col :span="12">Консультации:</el-col>
+      <el-col :span="12">
+        Консультации:
+        <span v-if="currentUserConsultations.length === 0" class="info-text">Нет консультаций</span>
+      </el-col>
       <el-col :span="12" style="text-align: right;">
         <el-button
           size="mini"
           type="success"
-          @click="$router.push({ name: 'ConsultationAdd', params: { id: currentUser.id } })">Добавить консультацию</el-button>
+          @click="$router.push({ name: 'consultation-add-id', params: { id: currentUser.id } })">Добавить консультацию</el-button>
       </el-col>
     </el-row>
-    <table class="table">
+    <table v-if="currentUserConsultations.length !== 0" class="table">
       <tr>
         <th>Дата</th>
         <th>Время</th>

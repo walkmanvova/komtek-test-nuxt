@@ -81,7 +81,7 @@ export default {
           } else {
             this.addUser(this.userForm);
           }
-          this.$router.push({name: 'List'})
+          this.$router.push({name: 'index'})
         } else {
           return false;
         }
@@ -93,7 +93,6 @@ export default {
   },
   created() {
     if (this.editForm) {
-      console.log('create UserForm')
       this.userForm = {...this.getCurrentUser(+this.$route.params.id)} //Клонируем обьект
     }
   }

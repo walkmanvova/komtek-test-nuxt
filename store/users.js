@@ -2,8 +2,7 @@ import axios from "axios";
 export default {
   state() {
     return {
-      users: [],
-      usersLoaded: false
+      users: []
     }
   },
   actions: {
@@ -12,7 +11,6 @@ export default {
         const response = await axios.get('https://my-json-server.typicode.com/walkmanvova/komtek-test/users');
         const result = await response.data;
         ctx.commit('updateUsers', result)
-        ctx.commit('usersLoadedChange')
       } catch (error) {
         console.log('error:', error)
       }
@@ -21,9 +19,6 @@ export default {
   mutations: {
     updateUsers(state, users) {
       state.users = users
-    },
-    usersLoadedChange(state) {
-      state.usersLoaded = true
     },
     deleteUser(state, userId) {
       state.users = state.users.filter(user => user.id !== userId)
@@ -43,9 +38,6 @@ export default {
   getters: {
     allUsers(state) {
       return state.users
-    },
-    usersLoaded(state) {
-      return state.usersLoaded
     },
     getCurrentUser: state => userId => {
       return state.users.find(item => item.id === userId)

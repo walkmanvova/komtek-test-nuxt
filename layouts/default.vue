@@ -48,4 +48,11 @@ export default {
 .table td:last-child {
   text-align: right;
 }
+.info-text {
+  font-size: 14px;
+  color: #909399;
+}
+.info-text__center {
+  text-align: center;
+}
 </style>

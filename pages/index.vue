@@ -1,6 +1,7 @@
 <template>
   <div>
-    <table class="table">
+    <div v-if="allUsers.length === 0" class="info-text info-text__center">Пациентов нет</div>
+    <table v-else class="table">
       <tr>
         <th>ФИО</th>
         <th>СНИЛС</th>
@@ -40,6 +41,7 @@ export default {
   async fetch({store}) {
     if (store.getters['users/allUsers'].length === 0) {
       await store.dispatch('users/requestUsers')
+      await store.dispatch('consultations/requestConsultations')
     }
   },
   data() {
@@ -54,9 +56,6 @@ export default {
       return `${row.lastName} ${row.firstName} ${row.middleName}`
     }
   },
-  /*async created() {
-    this.requestUsers()
-  },*/
   computed: {
     ...mapGetters({allUsers: 'users/allUsers'}),
     filteredUsers() { // Получаем массив пациентов отфильтрованный в соответствии с поисковым запросом
